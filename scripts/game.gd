@@ -63,8 +63,15 @@ func _build_interactables() -> void:
 		Vector2(ROOM.position.x + 160, ROOM.position.y + 120), Color("#8a6f4b"))
 	_add_interactable("Radio set", "Call the mainland", "radio",
 		Vector2(ROOM.position.x + ROOM.size.x - 180, ROOM.position.y + 130), Color("#4b6f8a"))
-	_add_interactable("Lamp-room stair", "Climb toward the light", "door",
-		Vector2(ROOM.position.x + ROOM.size.x * 0.5, ROOM.position.y + 60), Color("#3a4a54"))
+	var stair := DoorTransition.new()
+	stair.label = "Lamp-room stair"
+	stair.prompt_text = "Climb toward the light"
+	stair.target_scene = "res://scenes/lamp_room.tscn"
+	stair.position = Vector2(ROOM.position.x + ROOM.size.x * 0.5, ROOM.position.y + 60)
+	stair.color = Color("#3a4a54")
+	add_child(stair)
+	stair.setup()
+	_interactables.append(stair)
 
 
 func _add_interactable(label: String, prompt: String, start_id: String, pos: Vector2, color: Color) -> void:
