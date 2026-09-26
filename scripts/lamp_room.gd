@@ -58,8 +58,8 @@ func _build_player() -> void:
 	add_child(_player)
 
 	var camera := Camera2D.new()
-	camera.position_smoothing_enabled = true
-	_player.add_child(camera)
+	camera.position = ROOM.get_center()
+	add_child(camera)
 	camera.make_current()
 
 
@@ -137,16 +137,16 @@ func _show_pause_menu() -> void:
 
 	var overlay := Control.new()
 	_pause_layer.add_child(overlay)
-	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	var dim := ColorRect.new()
 	dim.color = Color(0, 0, 0, 0.6)
 	overlay.add_child(dim)
-	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	var center := CenterContainer.new()
 	overlay.add_child(center)
-	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 12)
 	center.add_child(vbox)
